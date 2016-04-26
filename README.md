@@ -19,3 +19,26 @@ The rules are in plain javascript.
 Nashorn sccript engine allows runtime loading and evaluation of rules. 
 
 
+### Instructions
+
+* Install the app by cloning the repository
+
+* Build and run the app
+  ```
+     $ cd rulesengine
+     $ gradlew bootRun
+  ```
+
+ * Call rest end-points.
+   ```
+     $ curl 'http://localhost:8080/api/rules/WhatToDo?family_visiting=yes' -v
+     
+     $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no%20money=poor%20weather=good'
+     
+     $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=poor&weather=good'
+     
+     $ cls; curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=poor&weather=cold'
+     
+     $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=rich&weather=cold'
+
+   ```

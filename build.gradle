@@ -30,6 +30,8 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.projectlombok:lombok:1.16.6')
+	compile('org.json:json:20090211')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'junit', name: 'junit'
 }
