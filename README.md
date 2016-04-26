@@ -33,8 +33,6 @@ Nashorn sccript engine allows runtime loading and evaluation of rules.
   ```
      $ curl 'http://localhost:8080/api/rules/WhatToDo?family_visiting=yes' -v
      
-     $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no%20money=poor%20weather=good'
-     
      $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=poor&weather=good'
      
      $ cls; curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=poor&weather=cold'
