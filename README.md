@@ -29,8 +29,8 @@ Nashorn sccript engine allows runtime loading and evaluation of rules.
      $ gradlew bootRun
   ```
 
- * Call rest end-points.
-   ```
+* Call rest end-points.
+  ```
      $ curl 'http://localhost:8080/api/rules/WhatToDo?family_visiting=yes' -v
      
      $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no%20money=poor%20weather=good'
@@ -41,4 +41,4 @@ Nashorn sccript engine allows runtime loading and evaluation of rules.
      
      $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=rich&weather=cold'
 
-   ```
+  ```
