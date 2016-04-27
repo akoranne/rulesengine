@@ -1,6 +1,6 @@
 ---
 applications:
-- name: whattodo
-  memory: 1G
+- name: simplerules
+  memory: 768M
   instances: 1
   path: build/libs/rulesengine-0.0.1-SNAPSHOT.jar
