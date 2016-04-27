@@ -1,6 +1,6 @@
 ---
 applications:
-- name: simple-rules
+- name: whattodo
   memory: 1G
   instances: 1
   docker-image: krujos/hello-world
