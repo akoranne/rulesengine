@@ -1,0 +1,7 @@
+---
+applications:
+- name: simple-rules
+  memory: 1G
+  instances: 1
+  docker-image: krujos/hello-world
+
