@@ -31,12 +31,48 @@ Nashorn sccript engine allows runtime loading and evaluation of rules.
 
 * Call rest end-points.
   ```
-     $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=yes' -v
+     $ curl -v 'http://localhost:8080/api/rules/WhatToDo?family_visiting=yes'
      
      $ curl 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=poor&weather=good'
      
      $ curl 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=poor&weather=cold'
      
      $ curl 'http://localhost:8080/api/rules/WhatToDo?family_visiting=no&money=rich&weather=cold'
+
+  ```
+
+### Cloud
+
+[Meet PCF Dev](https://blog.pivotal.io/pivotal-cloud-foundry/products/meet-pcf-dev-your-ticket-to-running-cloud-foundry-locally). It is a simplifed, and minimized version of the Pivotal Cloud Foundry intended for your local machine. And [Getting started](https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction) is simple.
+
+
+#####Deploy to cloud
+
+* Target the cloud instance
+  ```
+     $ cf login -a api.local.pcfdev.io --skip-ssl-validation
+
+     API endpoint:  api.local.pcfdev.io   
+     Email>     admin
+     Password>  admin
+
+  ```
+
+* Build and deploy to cloud
+  ```
+     $ cd rulesengine
+	 $ ./gradlew assemble
+     $ cf push -f manifest.xml
+  ```
+
+* Test the cloud service
+  ```
+     $ curl -v 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=yes'
+     
+     $ curl 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=poor&weather=good'
+     
+     $ curl 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=poor&weather=cold'
+     
+     $ curl 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=rich&weather=cold'
 
   ```
