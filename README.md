@@ -21,7 +21,7 @@ Nashorn sccript engine allows runtime loading and evaluation of rules.
 
 ### Instructions
 
-* Install the app by cloning the repository
+* Install the app by cloning the repository [rulesengine](https://github.com/akoranne/rulesengine.git)
 
 * Build and run the app
   ```
