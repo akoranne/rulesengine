@@ -1,5 +1,5 @@
 resources:
-- name: code-repo
+- name: source-code
   type: git
   source:
     uri: https://github.com/akoranne/rulesengine.git
@@ -9,7 +9,7 @@ jobs:
   public: true
   serial: true
   plan:
-  - get: code-repo
+  - get: source-code
     trigger: true
   - task: build
     file: code/concourse/build.yml

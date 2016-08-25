@@ -1,17 +1,17 @@
 resources:
-- name: code-repo
+- name: source-code
   type: git
   source:
     uri: https://github.com/akoranne/rulesengine.git
     branch: develop
 
 jobs:
-- name: build
+- name: package
   public: true
   serial: true
   plan:
-  - get: code-repo
+  - get: source-code
     trigger: true
-  - task: buildUnit
-    file: code-repo/ci/pipelines/buildUnit.yml
+  - task: package
+    file: source-code/ci/pipelines/buildUnit.yml
     
