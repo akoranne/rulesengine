@@ -81,4 +81,15 @@ __[Meet PCF Dev](https://blog.pivotal.io/pivotal-cloud-foundry/products/meet-pcf
 
   ```
 
+* Concours CI/CD Pipleine
+
+The CI/CD pipeline will build the and push the app to local pcf-dev instance. Setup the concourse pipeline as follows
+
+  ```
+     $ fly -t local set-pipeline -p rulesengine -c ci/rulesengine-pipeline.yml
+     
+     $ fly -t local unpause-pipeline -p rulesengine
+     
+  ```
+
 Please post your comments for me, or if you have any questions.
