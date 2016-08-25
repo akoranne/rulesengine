@@ -1,0 +1,14 @@
+---
+platform: linux
+
+# image: docker:///datianshi/gradle
+image: docker:///qlik/gradle
+
+inputs:
+  - name: code-repo
+
+outputs:
+  - name: build-output
+
+run:
+  path: code-repo/ci/tasks/gradle-build-test.sh
