@@ -1,23 +1,24 @@
 buildscript {
-	ext {
-		springBootVersion = '1.3.3.RELEASE'
-	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+		// classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
 	}
 }
 
 apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'spring-boot' 
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+// apply plugin: 'spring-boot'
+// apply plugin: "io.spring.dependency-management"
+
 
 jar {
 	baseName = 'rulesengine'
-	version = '0.0.1-SNAPSHOT'
+	version = '0.2.0-SNAPSHOT'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -31,6 +32,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.projectlombok:lombok:1.16.6')
 	compile('org.json:json:20090211')
+	compile('com.google.guava:guava:20.0')
+
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'junit', name: 'junit'
@@ -47,3 +50,4 @@ eclipse {
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.12'
 }
+

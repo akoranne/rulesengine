@@ -1,0 +1,29 @@
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/akoranne/rulesengine.git
+    branch: develop
+
+- name: staging-app
+  type: cf
+  source:
+    api: https://api.local.pcfdev.io
+    username: user
+    password: pass
+    organization: pcfdev-org
+    space: pcfdev-space
+    skip_cert_check: true
+
+jobs:
+- name: package
+  public: true
+  serial: true
+  plan:
+  - get: source-code
+    trigger: true
+  - task: package
+    file: source-code/ci/pipelines/buildUnit.yml
+  - put: staging-app
+    params:
+      manifest: source-code/manifest.yml    

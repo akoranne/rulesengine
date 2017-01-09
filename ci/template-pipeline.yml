@@ -1,0 +1,21 @@
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/akoranne/rulesengine.git
+    branch: develop
+jobs:
+- name: build
+  public: true
+  serial: true
+  plan:
+  - get: source-code
+    trigger: true
+  - task: build
+    file: code/concourse/build.yml
+  - task: create-context
+    file: code/concourse/create-context.yml
+  - put: image
+    params:
+      build: context
+  - put: swarm
