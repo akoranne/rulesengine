@@ -71,13 +71,13 @@ __[Meet PCF Dev](https://blog.pivotal.io/pivotal-cloud-foundry/products/meet-pcf
 * Test the cloud service
 
   ```
-     $ curl -v 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=yes'
+     $ curl -v 'http://simple-rules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=yes'
      
-     $ curl 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=poor&weather=good'
+     $ curl 'http://simple-rules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=poor&weather=good'
      
-     $ curl 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=poor&weather=cold'
+     $ curl 'http://simple-rules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=poor&weather=cold'
      
-     $ curl 'http://simplerules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=rich&weather=cold'
+     $ curl 'http://simple-rules.local.pcfdev.io/api/rules/WhatToDo?family_visiting=no&money=rich&weather=cold'
 
   ```
 
