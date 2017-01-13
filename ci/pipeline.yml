@@ -1,0 +1,43 @@
+# pipeline for rulesengine
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/akoranne/rulesengine.git
+    branch: develop
+
+- name: non-prod
+  type: cf
+  source:
+    api: {{pws-api}}
+    organization: {{pws-organization}}
+    username: {{deploy-username}}
+    password: {{deploy-password}}
+    skip_cert_check: false
+    space: {{pws-staging-space}}
+
+- name: production
+  type: cf
+  source:
+    api: {{pws-api}}
+    organization: {{pws-organization}}
+    username: {{deploy-username}}
+    password: {{deploy-password}}
+    skip_cert_check: false
+    space: {{pws-production-space}}
+
+jobs:
+- name: package
+  public: true
+  serial: true
+  plan:
+  - get: source-code
+    trigger: true
+  - task: package
+    file: source-code/ci/pipelines/buildUnit.yml
+  - put: non-prod
+    params:
+      manifest: source-code/manifest.yml    
+  - put: production
+    params:
+      manifest: source-code/manifest.yml    
