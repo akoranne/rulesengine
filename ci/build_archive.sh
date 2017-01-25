@@ -19,6 +19,9 @@ fi
 export GRADLE_OPTS="-Dorg.gradle.native=false"
 ./gradlew clean build
 
+# create target folder
+mkdir ../build-output
+
 # move all manifests file to target
 cp *-manifest.yml  ../build-output/
 
