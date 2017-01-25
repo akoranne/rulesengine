@@ -16,6 +16,7 @@ version=$(cat "$file")
 echo $version
 
 # gradle build
+export GRADLE_OPTS="-Dorg.gradle.native=false"
 gradle clean build
 
 # move all manifests file to target

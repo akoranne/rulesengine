@@ -22,4 +22,4 @@ params:
 #  args: ["--build-file", "source-code/build.gradle", "build"]
 
 run:
-  path: ci-repo/ci/build_archive.sh
+  path: service-repo/ci/build_archive.sh
