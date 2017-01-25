@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo ""
+echo " .. Running build"
+echo $localEnv
+
+if [ "$localEnv" == "development" ];then
+	cd service-repo
+else
+#	cd service-repo-master
+	cd service-repo
+fi
+
+file="../version/number"
+version=$(cat "$file")
+echo $version
+
+# gradle build
+gradle clean build
+
+# move all manifests file to target
+cp *-manifest.yml  ../build-output/
+
+cp build/libs/*.jar ../build-output/

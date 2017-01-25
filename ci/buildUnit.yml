@@ -1,0 +1,25 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: java
+    tag: latest
+
+inputs:
+  - name: service-repo
+
+outputs:
+  - name: build-output
+
+params:
+  TERM: -dumb
+  GRADLE_OPTS: -Dorg.gradle.native=false
+
+#run:
+#  path: "service-repo/gradlew"
+#  args: ["--build-file", "source-code/build.gradle", "build"]
+
+run:
+  path: ci-repo/ci/build_archive.sh

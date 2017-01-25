@@ -1,43 +1,85 @@
 # pipeline for rulesengine
+
+groups:
+- name: Rulesengine-Service
+  jobs:
+  - service-unit
+
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: latest
+
 resources:
-- name: source-code
+- name: service-repo
   type: git
   source:
     uri: https://github.com/akoranne/rulesengine.git
     branch: develop
-
-- name: non-prod
+- name: deploy-dev-env
   type: cf
   source:
-    api: {{pws-api}}
-    organization: {{pws-organization}}
-    username: {{deploy-username}}
-    password: {{deploy-password}}
+    api:             {{pws-api}}
+    username:        {{deploy-username}}
+    password:        {{deploy-password}}
     skip_cert_check: true
-    space: {{pws-staging-space}}
-
-- name: production
-  type: cf
-  source:
-    api: {{pws-api}}
-    organization: {{pws-organization}}
-    username: {{deploy-username}}
-    password: {{deploy-password}}
-    skip_cert_check: true
-    space: {{pws-production-space}}
+    organization:    {{pws-organization}}
+    space:           {{pws-staging-space}}
 
 jobs:
 - name: package
   public: true
   serial: true
   plan:
-  - get: source-code
+  - get: service-repo
     trigger: true
   - task: package
-    file: source-code/ci/pipelines/buildUnit.yml
-  - put: non-prod
+    file: service-repo/ci/pipelines/buildUnit.yml
+  - put: deploy-dev-env
     params:
-      manifest: source-code/manifest.yml    
-  - put: production
+      manifest: source-code/manifest.yml
+
+jobs:
+- name: service-unit
+  public: true
+  serial: true
+  plan:
+  - get: service-repo
+    trigger: true
+  - task: CreateArchive
+    privileged: true
+    file: service-repo/ci/buildUnit.yml
+#    on_failure:
+#      put: slack-alert
+#      params:
+#        channels: ci-pipeline
+#        text: |
+#          The $BUILD_PIPELINE_NAME build failed!
+#          https://shilpsdesigns.slack.com/archives/ci-pipeline
+#          http://concourse.scus-10.test.cf.fedex.com:8080/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#        username: Blue-Ninja
+#        icon_url: http://downloadicons.net/sites/default/files/error-icons-44565.png
+  - put: deploy-dev-env
     params:
-      manifest: source-code/manifest.yml    
+      manifest: build-output/manifest.yml
+      path: build-output/*.jar
+#    on_failure:
+#      put: slack-alert
+#      params:
+#        channels: ci-pipeline
+#        text: |
+#          The $BUILD_PIPELINE_NAME failed deployment to dev space.
+#          http://concourse.scus-10.test.cf.fedex.com:8080/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#        username: Blue-Ninja
+#        icon_url: http://downloadicons.net/sites/default/files/error-icons-44565.png
+#    on_success:
+#     put: slack-alert
+#     params:
+#       channels: SDC-Firehose
+#       text: |
+#         The $BUILD_PIPELINE_NAME successfully deployed to dev space.
+#         http://concourse.scus-10.test.cf.fedex.com:8080/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#       username: Blue-Ninja
+#       icon_url: http://vignette2.wikia.nocookie.net/legouniverse/images/f/f5/Jay_render.PNG/revision/latest?cb=20120406164257
