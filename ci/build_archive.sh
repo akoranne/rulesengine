@@ -11,13 +11,13 @@ else
 	cd service-repo
 fi
 
-file="../version/number"
-version=$(cat "$file")
-echo $version
+# file="../version/number"
+# version=$(cat "$file")
+# echo $version
 
 # gradle build
 export GRADLE_OPTS="-Dorg.gradle.native=false"
-gradle clean build
+./gradlew clean build
 
 # move all manifests file to target
 cp *-manifest.yml  ../build-output/
