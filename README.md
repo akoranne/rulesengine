@@ -65,7 +65,7 @@ __[Meet PCF Dev](https://blog.pivotal.io/pivotal-cloud-foundry/products/meet-pcf
   ```
      $ cd rulesengine
 	 $ ./gradlew assemble
-     $ cf push -f manifest.xml
+     $ cf push -f manifest.yml
   ```
 
 * Test the cloud service

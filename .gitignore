@@ -115,3 +115,9 @@ Desktop.ini
 # Maven Wrapper
 ######################
 !.mvn/wrapper/maven-wrapper.jar
+.gradle/
+.idea/
+build/
+ci/assets/
+ci/credentials-ecslab.yml
+ci/scripts/

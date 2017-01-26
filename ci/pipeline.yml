@@ -1,0 +1,84 @@
+# pipeline for rulesengine
+
+groups:
+- name: Rulesengine-Service
+  jobs:
+  - service-unit
+
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: latest
+
+resources:
+- name: service-repo
+  type: git
+  source:
+    uri: https://github.com/akoranne/rulesengine.git
+    branch: develop
+- name: deploy-dev-env
+  type: cf
+  source:
+    api:             {{pws-api}}
+    username:        {{deploy-username}}
+    password:        {{deploy-password}}
+    skip_cert_check: true
+    organization:    {{pws-organization}}
+    space:           {{pws-staging-space}}
+
+jobs:
+- name: package
+  public: true
+  serial: true
+  plan:
+  - get: service-repo
+    trigger: true
+  - task: package
+    file: service-repo/ci/pipelines/buildUnit.yml
+  - put: deploy-dev-env
+    params:
+      manifest: source-code/manifest.yml
+
+jobs:
+- name: service-unit
+  public: true
+  serial: true
+  plan:
+  - get: service-repo
+    trigger: true
+  - task: CreateArchive
+    privileged: true
+    file: service-repo/ci/buildUnit.yml
+#    on_failure:
+#      put: slack-alert
+#      params:
+#        channels: ci-pipeline
+#        text: |
+#          The $BUILD_PIPELINE_NAME build failed!
+#          https://shilpsdesigns.slack.com/archives/ci-pipeline/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#        username: akoranne
+#        icon_url: http://downloadicons.net/sites/default/files/error-icons-44565.png
+  - put: deploy-dev-env
+    params:
+      manifest: build-output/manifest.yml
+      path: build-output/*.jar
+#    on_failure:
+#      put: slack-alert
+#      params:
+#        channels: ci-pipeline
+#        text: |
+#          The $BUILD_PIPELINE_NAME failed deployment to dev space.
+#          https://shilpsdesigns.slack.com/archives/ci-pipeline/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#        username: akoranne
+#        icon_url: http://downloadicons.net/sites/default/files/error-icons-44565.png
+#    on_success:
+#     put: slack-alert
+#     params:
+#       channels: ci-pipeline
+#       text: |
+#         The $BUILD_PIPELINE_NAME successfully deployed to dev space.
+#         https://shilpsdesigns.slack.com/archives/ci-pipeline/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#       username: akoranne
+#       icon_url: http://vignette2.wikia.nocookie.net/legouniverse/images/f/f5/Jay_render.PNG/revision/latest?cb=20120406164257
