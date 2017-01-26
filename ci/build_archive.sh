@@ -1,28 +1,24 @@
 #!/bin/bash
+set -e
 
 echo ""
 echo " .. Running build"
-echo $localEnv
+echo ""
 
-if [ "$localEnv" == "development" ];then
-	cd service-repo
-else
-#	cd service-repo-master
-	cd service-repo
-fi
-
-# file="../version/number"
-# version=$(cat "$file")
-# echo $version
+cd service-repo
 
 # gradle build
 export GRADLE_OPTS="-Dorg.gradle.native=false"
 ./gradlew clean build
 
 # create target folder
-mkdir -f ../build-output
+# mkdir -f ../build-output
 
 # move all manifests file to target
 cp manifest.yml  ../build-output/
 
 cp build/libs/*.jar ../build-output/
+
+echo ""
+echo " Build completed!!!"
+echo ""
