@@ -1,6 +1,7 @@
 ---
 applications:
 - name: simple-rules
-  memory: 800M
+  memory: 1G
   instances: 1
-  path: ./build/libs/rulesengine-0.2.0-SNAPSHOT.jar
+  path: build/libs/rulesengine-0.2.0-SNAPSHOT.jar
+
