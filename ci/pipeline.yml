@@ -57,9 +57,8 @@ jobs:
 #        channels: ci-pipeline
 #        text: |
 #          The $BUILD_PIPELINE_NAME build failed!
-#          https://shilpsdesigns.slack.com/archives/ci-pipeline
-#          http://concourse.scus-10.test.cf.fedex.com:8080/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
-#        username: Blue-Ninja
+#          https://shilpsdesigns.slack.com/archives/ci-pipeline/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#        username: akoranne
 #        icon_url: http://downloadicons.net/sites/default/files/error-icons-44565.png
   - put: deploy-dev-env
     params:
@@ -71,15 +70,15 @@ jobs:
 #        channels: ci-pipeline
 #        text: |
 #          The $BUILD_PIPELINE_NAME failed deployment to dev space.
-#          http://concourse.scus-10.test.cf.fedex.com:8080/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
-#        username: Blue-Ninja
+#          https://shilpsdesigns.slack.com/archives/ci-pipeline/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#        username: akoranne
 #        icon_url: http://downloadicons.net/sites/default/files/error-icons-44565.png
 #    on_success:
 #     put: slack-alert
 #     params:
-#       channels: SDC-Firehose
+#       channels: ci-pipeline
 #       text: |
 #         The $BUILD_PIPELINE_NAME successfully deployed to dev space.
-#         http://concourse.scus-10.test.cf.fedex.com:8080/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
-#       username: Blue-Ninja
+#         https://shilpsdesigns.slack.com/archives/ci-pipeline/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+#       username: akoranne
 #       icon_url: http://vignette2.wikia.nocookie.net/legouniverse/images/f/f5/Jay_render.PNG/revision/latest?cb=20120406164257
