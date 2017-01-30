@@ -1,5 +1,7 @@
 #!/bin/bash
-set -e
+
+set -e # fail fast
+#	set -x # print commands
 
 echo ""
 echo " .. Running build"
@@ -9,7 +11,7 @@ cd service-repo
 
 # gradle build
 export GRADLE_OPTS="-Dorg.gradle.native=false"
-./gradlew clean build
+./gradlew clean test assemble
 
 # create target folder
 # mkdir -f ../build-output

@@ -1,5 +1,5 @@
 FROM java
 
-ADD ./build/libs/rulesengine-0.0.1-SNAPSHOT.jar /simplerules.jar
+ADD ./build/libs/rulesengine-0.0.1-SNAPSHOT.jar /rulesengine.jar
 EXPOSE 8080
-CMD ["java", "-jar", "simplerules.jar"]
+CMD ["java", "-jar", "rulesengine.jar"]
