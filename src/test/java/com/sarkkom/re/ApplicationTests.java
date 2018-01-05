@@ -15,10 +15,10 @@ import java.util.Map;
 import static junit.framework.TestCase.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = RulesEvaluateApplication.class)
-public class RulesEvaluateApplicationTests {
+@SpringBootTest(classes = Application.class)
+public class ApplicationTests {
 
-	private static final Logger log = LoggerFactory.getLogger(RulesEvaluateApplicationTests.class);
+	private static final Logger log = LoggerFactory.getLogger(ApplicationTests.class);
 
 	@Autowired
 	private RulesCatalog catalogService;

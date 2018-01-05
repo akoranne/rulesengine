@@ -20,7 +20,7 @@ import static junit.framework.TestCase.fail;
  * Created by ajaykoranne on 4/21/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = RulesEvaluateApplication.class)
+@SpringBootTest(classes = Application.class)
 public class WhatToDoRuleTest {
 	private static final Logger log = LoggerFactory.getLogger(WhatToDoRuleTest.class);
 
@@ -86,7 +86,7 @@ public class WhatToDoRuleTest {
 		engine.put("family_visiting", false);
 		engine.put("weather", "windy");
 		engine.eval(rule);
-		Assert.assertEquals(null, engine.get("todo"));
+		Assert.assertNull(engine.get("todo"));
 	}
 
 	@Test
