@@ -44,7 +44,7 @@ var todo;
 
 var arrValues = ["Sam","Great", "Sample", "High"];
 print (arrValues.indexOf("Sam"));
-print(" ---> ", family_visiting, weather, money);
+print(" jjs args: ---> ", family_visiting, weather, money);
 
 if (family_visiting == true)  {
 	todo = "Cinema";

@@ -54,7 +54,9 @@ public class WhatToDoRuleTest {
 	public void test1() throws Exception {
 		engine.put("family_visiting", true);
 		engine.eval(rule);
-		Assert.assertEquals("Cinema", engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals("Cinema", results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -62,7 +64,9 @@ public class WhatToDoRuleTest {
 		engine.put("family_visiting", false);
 		engine.put("weather", "cold");
 		engine.eval(rule);
-		Assert.assertEquals(null, engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals(null, results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -70,7 +74,9 @@ public class WhatToDoRuleTest {
 		engine.put("family_visiting", false);
 		engine.put("weather", "sunny");
 		engine.eval(rule);
-		Assert.assertEquals("Play Tennis", engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals("Play Tennis", results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -78,7 +84,9 @@ public class WhatToDoRuleTest {
 		engine.put("family_visiting", false);
 		engine.put("weather", "rainy");
 		engine.eval(rule);
-		Assert.assertEquals("Stay In", engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals("Stay In", results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -86,7 +94,9 @@ public class WhatToDoRuleTest {
 		engine.put("family_visiting", false);
 		engine.put("weather", "windy");
 		engine.eval(rule);
-		Assert.assertNull(engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals(null, results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -95,7 +105,9 @@ public class WhatToDoRuleTest {
 		engine.put("weather", "windy");
 		engine.put("money", "rich");
 		engine.eval(rule);
-		Assert.assertEquals("Shopping", engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals("Shopping", results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -104,7 +116,9 @@ public class WhatToDoRuleTest {
 		engine.put("weather", "windy");
 		engine.put("money", "poor");
 		engine.eval(rule);
-		Assert.assertEquals("Cinema", engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals("Cinema", results);
+		System.out.println("Todo: " + results);
 	}
 
 	@Test
@@ -113,6 +127,8 @@ public class WhatToDoRuleTest {
 		engine.put("weather", "cloudy");
 		engine.put("money", "poor");
 		engine.eval(rule);
-		Assert.assertEquals("Cinema", engine.get("todo"));
+		Object results = engine.get("todo");
+		Assert.assertEquals("Cinema", results);
+		System.out.println("Todo: " + results);
 	}
 }
