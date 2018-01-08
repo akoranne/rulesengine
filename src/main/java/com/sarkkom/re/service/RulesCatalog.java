@@ -96,10 +96,17 @@ public class RulesCatalog {
 		if (StringUtils.hasText(ruleFileName)) {
 			log.debug("reteriving javascript rules - " + ruleFileName);
 
-			ClassLoader classLoader = RulesCatalog.class.getClassLoader();
-			try (BufferedReader in = new BufferedReader(new FileReader(classLoader.getResource(ruleFileName).getFile()))) {
+			InputStream inStr = this.getClass().getResourceAsStream(ruleFileName);
+			try (BufferedReader in = new BufferedReader(new InputStreamReader(inStr, "UTF-8"))) {
 				rulesText = in.lines().collect(Collectors.joining("\n"));
 			}
+
+//			ClassLoader classLoader = RulesCatalog.class.getClassLoader();
+//			try (BufferedReader in = new BufferedReader(new FileReader(classLoader.getResource(ruleFileName).getFile()))) {
+//				rulesText = in.lines().collect(Collectors.joining("\n"));
+//			}
+
+
 			if (StringUtils.hasText(rulesText)) {
 				// found and loaded rules, add to the map
 				jsCatalogMap.put(typeName, rulesText);
