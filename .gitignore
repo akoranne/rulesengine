@@ -51,11 +51,6 @@ local.properties
 /target/**
 
 ######################
-# Gradle
-######################
-.gradle/**
-
-######################
 # Package Files
 ######################
 *.jar
@@ -107,15 +102,17 @@ Desktop.ini
 .merge_file*
 
 ######################
-# Gradle Wrapper
+# Gradle
 ######################
 !gradle/wrapper/gradle-wrapper.jar
+.gradle/
+.gradle/**
+out
 
 ######################
 # Maven Wrapper
 ######################
 !.mvn/wrapper/maven-wrapper.jar
-.gradle/
 .idea/
 build/
 ci/assets/

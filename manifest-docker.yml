@@ -3,5 +3,4 @@ applications:
 - name: simplerules
   memory: 1G
   instances: 1
-  docker-image: krujos/hello-world
 
