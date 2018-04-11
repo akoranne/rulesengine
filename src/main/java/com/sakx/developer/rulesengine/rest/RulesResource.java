@@ -1,19 +1,24 @@
-package com.sarkkom.re.rest;
+package com.sakx.developer.rulesengine.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sarkkom.re.service.RulesCatalog;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sakx.developer.rulesengine.service.RulesCatalog;
 
 /**
  * Rest Controller for get rules for the given ruleName at runtime.
@@ -25,8 +30,8 @@ public class RulesResource {
 	private RulesCatalog catalogService;
 
 	static ScriptEngine engine = null;
-	private String defaultRuleType = "WhatToDo";
-	private String rule = null;
+//	private String defaultRuleType = "WhatToDo";
+//	private String rule = null;
 
 	@RequestMapping(value = "/rules/{name}",
 			method = RequestMethod.GET,
@@ -46,7 +51,7 @@ public class RulesResource {
 			engine.eval(rule);
 
 			// JSONObject results = new JSONObject();
-			Map results = new HashMap<>();
+			Map<String, String> results = new HashMap<String, String>();
 			results.put("todo", (String) engine.get("todo"));
 			json = (new ObjectMapper()).writeValueAsString(results);
 		} catch (Exception e) {

@@ -1,6 +1,10 @@
-package com.sarkkom.re;
+package com.sakx.developer.rulesengine;
 
-import com.sarkkom.re.service.RulesCatalog;
+import static org.junit.Assert.fail;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,16 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-
-import static junit.framework.TestCase.fail;
+import com.sakx.developer.rulesengine.service.RulesCatalog;
 
 /**
  * Created by ajaykoranne on 4/21/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = RulesengineApplication.class)
 public class WhatToDoRuleTest {
 	private static final Logger log = LoggerFactory.getLogger(WhatToDoRuleTest.class);
 
