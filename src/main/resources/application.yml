@@ -1,5 +1,29 @@
 spring:
   application:
     name: rulesengine
+
+  # show all actuator endpoints (only for POC)
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
 server:
   port: 8080
+
+
+# spring boot 1.x
+security:
+  basic:
+    enabled: false
+  ignored: /swagger-resources/**
+
+endpoints:
+  restart:
+    enabled: true
+
+# allow access to all actuator endpoints
+management:
+  security:
+    enabled: false
+

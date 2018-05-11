@@ -24,7 +24,7 @@ import com.sakx.developer.rulesengine.service.RulesCatalog;
  * Rest Controller for get rules for the given ruleName at runtime.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class RulesResource {
 	@Autowired
 	private RulesCatalog catalogService;
@@ -33,7 +33,12 @@ public class RulesResource {
 //	private String defaultRuleType = "WhatToDo";
 //	private String rule = null;
 
-	@RequestMapping(value = "/rules/{name}",
+	@RequestMapping("/")
+	public String home() {
+		return "\n\n	*** Rules Engine *** ";
+	}
+
+	@RequestMapping(value = "/api/rules/{name}",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> evaluateRule(
