@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.6.RELEASE'
+		springBootVersion = '1.5.13.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -15,21 +15,47 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-version = '0.3.0-SNAPSHOT'
+version = '0.4.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-repositories {
-	mavenCentral()
-}
+//ext {
+//	springCloudVersion = 'Edgware.SR3'
+//	pivotalSpringCloudVersion = '1.6.3.RELEASE'
+//	swaggerVersion = '2.8.0'
+//}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile "org.springframework.boot:spring-boot-starter-security"
 	compile('org.projectlombok:lombok:1.16.6')
 	compile('org.json:json:20090211')
 	compile('com.google.guava:guava:20.0')
+
+	// swagger
+	compile "io.springfox:springfox-swagger2:2.8.0"
+	compile "io.springfox:springfox-swagger-ui:2.8.0"
+
+	compileOnly "org.projectlombok:lombok"
 
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'junit', name: 'junit'
 }
+
+//dependencyManagement {
+//	imports {
+//		// Sets the versions of Spring Cloud components
+//		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//		// this is critical, set version for pivotal's scs components
+//		//	mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:${pivotalSpringCloudVersion}"
+//	}
+//}
+
+repositories {
+	mavenCentral()
+//	maven { url "https://repo.spring.io/milestone" }
+//	maven { url "http://repo.maven.apache.org/maven2" }
+//	maven { url "https://repo.spring.io/milestone" }
+}
+
