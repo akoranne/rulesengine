@@ -1,7 +1,7 @@
 ---
 applications:
 - name: simple-rules
-  path: build/libs/rulesengine-0.3.0-SNAPSHOT.jar
+  path: build/libs/rulesengine-0.4.0-SNAPSHOT.jar
   buildpack: java_buildpack_offline
-  memory: 512M
+  memory: 768M
   instances: 1
