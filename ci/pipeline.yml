@@ -22,8 +22,8 @@ resources:
   type: cf
   source:
     api:             {{pws-api}}
-    username:        {{deploy-username}}
-    password:        {{deploy-password}}
+    username:        ((deploy-username))
+    password:        ((deploy-password))
     skip_cert_check: true
     organization:    {{pws-organization}}
     space:           {{pws-staging-space}}
@@ -35,7 +35,7 @@ jobs:
   plan:
   - get: service-repo
     trigger: true
-  - task: CreateArchive
+  - task: build-archive
     privileged: true
     file: service-repo/ci/tasks/build-service/task.yml
 #    on_failure:
