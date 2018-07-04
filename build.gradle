@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.1.RELEASE'
-		// springBootVersion = '1.5.13.RELEASE'
+		springBootVersion = '2.0.3.RELEASE'
+		// springBootVersion = '1.5.14.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -64,4 +64,3 @@ repositories {
 //	maven { url "http://repo.maven.apache.org/maven2" }
 //	maven { url "https://repo.spring.io/milestone" }
 }
-
