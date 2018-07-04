@@ -8,9 +8,6 @@ spring:
     web:
       exposure:
         include: '*'
-server:
-  port: 8080
-
 
 # spring boot 1.x
 security:
@@ -26,4 +23,3 @@ endpoints:
 management:
   security:
     enabled: false
-
